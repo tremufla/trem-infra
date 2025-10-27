@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: trem-gis-api
+spec:
+  selector:
+    app: trem-gis-api
+  ports:
+  - port: 3000
+    targetPort: 3000
+  type: LoadBalancer

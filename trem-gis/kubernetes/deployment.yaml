@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trem-gis-api
+spec:
+  selector:
+    matchLabels:
+      app: trem-gis-api
+  template:
+    metadata:
+      labels:
+        app: trem-gis-api
+    spec:
+      containers:
+      - name: trem-gis-api
+        image: trem-gis-api
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 3000
