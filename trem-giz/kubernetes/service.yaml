@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: trem-gis-api
+  name: trem-giz-api
 spec:
   selector:
-    app: trem-gis-api
+    app: trem-giz-api
   ports:
   - port: 3000
     targetPort: 3000

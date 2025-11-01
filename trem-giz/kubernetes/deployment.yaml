@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: trem-gis-api
+  name: trem-giz-api
 spec:
   selector:
     matchLabels:
-      app: trem-gis-api
+      app: trem-giz-api
   template:
     metadata:
       labels:
-        app: trem-gis-api
+        app: trem-giz-api
     spec:
       containers:
-      - name: trem-gis-api
-        image: trem-gis-api
+      - name: trem-giz-api
+        image: trem-giz-api
         resources:
           limits:
             memory: "512Mi"
