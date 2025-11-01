@@ -5,3 +5,7 @@ resources:
 - service.yaml
 
 namespace: trem
+images:
+- name: trem-giz-api
+  newName: cesarapires/trem-giz
+  newTag: b3713db2d3f4fd1930750ba3a9aaf16f6be117fa
