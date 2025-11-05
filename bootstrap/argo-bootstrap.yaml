@@ -7,7 +7,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: trem-giz
-  namespace: argocd
+  namespace: trem
 spec:
   project: default
   source:
