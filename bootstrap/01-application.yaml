@@ -11,7 +11,7 @@ spec:
     path: trem-giz
   destination:
     server: https://kubernetes.default.svc
-    namespace: trem-giz
+    namespace: trem
   syncPolicy:
     automated:
       prune: true
