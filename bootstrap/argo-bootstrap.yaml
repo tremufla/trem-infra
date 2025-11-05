@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: argocd
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: trem-giz
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/tremufla/trem-infra.git
+    targetRevision: main
+    path: trem-giz
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: trem-giz
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
