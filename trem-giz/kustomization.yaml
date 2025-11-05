@@ -8,4 +8,4 @@ namespace: trem
 images:
 - name: trem-giz-api
   newName: cesarapires/trem-giz
-  newTag: b3713db2d3f4fd1930750ba3a9aaf16f6be117fa
+  newTag: d95f1b3f8f404bb2ec32447494d9a64ea2c0dc2f
