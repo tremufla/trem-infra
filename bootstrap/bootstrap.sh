@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+echo "🚀 Iniciando bootstrap do Argo CD..."
+
 echo "Aguardando o Kubernetes ficar pronto..."
 until kubectl version --output=json &>/dev/null; do sleep 5; done
 
@@ -13,8 +15,20 @@ kubectl get namespace argocd &>/dev/null || {
 echo "Instalando o Argo CD..."
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
-echo "Aplicando o bootstrap do repositório..."
-kubectl apply -f https://raw.githubusercontent.com/tremufla/trem-infra/main/bootstrap/argo-bootstrap.yaml
+echo "Aguardando o Argo CD iniciar..."
+kubectl rollout status deployment/argocd-server -n argocd --timeout=180s || true
+
+echo "📁 Aplicando manifests do diretório bootstrap/..."
+if [ -d "bootstrap" ]; then
+  echo "Aplicando 00-namespace.yaml..."
+  kubectl apply -f bootstrap/00-namespace.yaml
+
+  echo "Aplicando 01-application.yaml..."
+  kubectl apply -f bootstrap/01-application.yaml
+else
+  echo "❌ Diretório 'bootstrap/' não encontrado. Abortando."
+  exit 1
+fi
 
 echo "Aguardando o secret do admin ser criado..."
 until kubectl -n argocd get secret argocd-initial-admin-secret &>/dev/null; do sleep 5; done
