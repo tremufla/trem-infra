@@ -14,6 +14,9 @@ until kubectl version --output=json &>/dev/null; do sleep 5; done
 echo "📂 Aplicando 00-namespace.yaml..."
 kubectl apply -f bootstrap/00-namespace.yaml
 
+echo "🧩 Aplicando recursos do MongoDB..."
+kubectl apply -k mongo/
+
 echo "⚙️  Instalando o Argo CD..."
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
