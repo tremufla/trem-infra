@@ -20,15 +20,15 @@ spec:
           image: mongo:6.0
           ports:
             - containerPort: 27017
-          env:
-            - name: MONGO_INITDB_ROOT_USERNAME
-              value: admin
-            - name: MONGO_INITDB_ROOT_PASSWORD
-              value: admin123
+          envFrom:
+            - configMapRef:
+                name: mongo-config
+            - secretRef:
+                name: mongo-secret
           resources:
             requests:
-              cpu: "250m"
-              memory: "256Mi"
+              cpu: "100m"
+              memory: "128Mi"
             limits:
               cpu: "500m"
               memory: "512Mi"
