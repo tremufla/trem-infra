@@ -1,3 +1,5 @@
+namespace: trem
+
 resources:
   - deployment.yaml
   - service.yaml

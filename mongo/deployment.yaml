@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongo
-  namespace: trem-giz
+  namespace: trem
   labels:
     app: mongo
 spec:
@@ -32,6 +32,14 @@ spec:
             limits:
               cpu: "500m"
               memory: "512Mi"
+          readinessProbe:
+            exec:
+              command:
+                - mongo
+                - --eval
+                - "db.adminCommand('ping')"
+            initialDelaySeconds: 10
+            periodSeconds: 10
           volumeMounts:
             - name: mongo-data
               mountPath: /data/db
