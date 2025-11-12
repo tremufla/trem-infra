@@ -41,7 +41,7 @@ echo "----------------------------------------------------"
 echo ""
 
 echo "🌐 Expondo o Argo CD localmente..."
-kubectl port-forward svc/argocd-server -n argocd 8080:443 &
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "NodePort"}}' &
 sleep 5
 
 echo "🌍 Argo CD disponível em: https://localhost:8080"

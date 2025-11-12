@@ -32,14 +32,6 @@ spec:
             limits:
               cpu: "500m"
               memory: "512Mi"
-          readinessProbe:
-            exec:
-              command:
-                - mongo
-                - --eval
-                - "db.adminCommand('ping')"
-            initialDelaySeconds: 10
-            periodSeconds: 10
           volumeMounts:
             - name: mongo-data
               mountPath: /data/db

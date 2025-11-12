@@ -8,8 +8,8 @@ metadata:
 spec:
   selector:
     app: mongo
+  type: NodePort
   ports:
-    - name: mongo
-      port: 27017
+    - port: 27017
       targetPort: 27017
-  type: ClusterIP
+      nodePort: 32017
