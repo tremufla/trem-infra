@@ -2,7 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: trem-giz-api
+  labels:
+    app: trem-giz-api
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: trem-giz-api
@@ -12,14 +15,31 @@ spec:
         app: trem-giz-api
     spec:
       containers:
-      - name: trem-giz-api
-        image: trem-giz-api
-        resources:
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
-        ports:
-        - containerPort: 3000
+        - name: trem-giz-api
+          image: trem-giz-api
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - configMapRef:
+                name: trem-giz-config
+            - secretRef:
+                name: trem-giz-secret
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 30
+            periodSeconds: 15
