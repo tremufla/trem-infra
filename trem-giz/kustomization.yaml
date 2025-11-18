@@ -2,14 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - deployment.yaml
-  - service.yaml
-  - configmap.yaml
-  - secret.yaml
+- deployment.yaml
+- service.yaml
+- configmap.yaml
+- secret.yaml
 
 namespace: trem
 
 images:
 - name: trem-giz-api
   newName: cesarapires/trem-giz
-  newTag: d95f1b3f8f404bb2ec32447494d9a64ea2c0dc2f
+  newTag: a397c766d799a15c898f76ca74303d0d475f41a4
